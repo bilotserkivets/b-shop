@@ -1,0 +1,9 @@
+{
+    "autoload": {
+        "psr-4": {
+            "bshop\\": "vendor/bshop/core",
+            "app\\": "app"
+        }
+    },
+    "require": {}
+}
