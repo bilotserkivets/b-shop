@@ -22,10 +22,23 @@ class Router {
     }
     
     public static function dispech($url) {
+        $url = self::removeQueryString($url);
         if(self::matchRoute($url)) {
-            echo "OK";
+            $controller = 'app\controllers\\' . self::$route['prefix'] . self::$route['controller'] . 'Controller';
+            if(class_exists($controller)) {
+               $controllerObject = new $controller(self::$route);
+                $action = self::lowerCamelCase(self::$route['action']). 'Action'; 
+                if(method_exists($controllerObject, $action)) {
+                    $controllerObject->$action();
+                    $controllerObject->getView();
+                } else {
+                    throw \Exception("Метод $controller::$action не найден", 404);
+                }
+            } else {
+                throw new \Exception("Контроллер $controller не найден", 404);
+            }
         } else {
-            echo "NO";
+            throw new \Exception("Страница не найдена", 404);
         }
     }
     
@@ -37,11 +50,39 @@ class Router {
                         $route[$k] = $v;
                     }
                 }
-                debug($route);
+                if(empty($route['action'])) {
+                    $route['action'] = 'index';
+                }
+                if(!isset($route['prefix'])) {
+                    $route['prefix'] = '';
+                } else {
+                    $route['prefix'] .= '\\';
+                }
+                $route['controller'] = self::upperCamelCase($route['controller']);
+                self::$route = $route;
                 return true;
             }
         }
             return false;
     }
     
+    protected static function upperCamelCase($name) {
+        return str_replace(' ', '', ucwords(str_replace('-', ' ', $name)));
+        }
+    
+      protected static function lowerCamelCase($name) {
+          return lcfirst(self::upperCamelCase($name));
+        }
+        
+        protected static function removeQueryString($url) {
+            if($url) {
+                $params = explode('&', $url, 2);
+                if(false === strpos($params[0], "=")) {
+                    return trim($params[0], '/');
+                } else {
+                    return '';
+                }
+            }
+            
+        }
 }

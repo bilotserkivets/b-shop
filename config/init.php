@@ -8,7 +8,7 @@ define("CORE", ROOT.'/vendor/bshop/core');
 define("LIBS", ROOT.'/vendor/bshop/core/libs');
 define("CACHE", ROOT.'/tmp/cache');
 define("CONF", ROOT.'/config');
-define("LAYOUT", 'default');
+define("LAYOUT", 'bshop');
 
 $app_path = "http://{$_SERVER["HTTP_HOST"]}{$_SERVER["PHP_SELF"]}";
 $app_path = preg_replace("#[^/]+$#", '', $app_path);

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/var/www/b-shop/vendor/bshop/core/App.php</file>
+            <file>file:/var/www/b-shop/public/index.php</file>
+            <file>file:/var/www/b-shop/vendor/bshop/core/ErrorHandler.php</file>
+            <file>file:/var/www/b-shop/config/routes.php</file>
+            <file>file:/var/www/b-shop/vendor/bshop/core/Router.php</file>
+            <file>file:/var/www/b-shop/config/init.php</file>
+        </group>
+    </open-files>
+</project-private>
